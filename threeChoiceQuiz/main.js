@@ -1,5 +1,5 @@
 let score = 0
-let quizzes = [
+const quizzes = [
   {
     question: '日本の首都はどこでしょう？',
     choices: ['大阪', '京都', '東京'],
