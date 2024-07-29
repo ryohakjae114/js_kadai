@@ -55,16 +55,17 @@ quizzes.forEach((quiz, quizIndex) => {
   main.appendChild(questionSection)
 })
 
-function answer(questionNumber, answer) {
-  const section = document.querySelector(`#question${questionNumber}`)
+function answer(quizIndex, choiceIndex) {
+  const section = document.querySelector(`#question${quizIndex}`)
   const choiceButtons = section.querySelectorAll('button')
-  const chosen = choiceButtons[answer]
-  const resultElement = document.createElement('div')
-  resultElement.style.display = 'inline'
+  const chosen = choiceButtons[choiceIndex]
   choiceButtons.forEach((choice) => {
     choice.disabled = true
   })
-  if (quizzes[questionNumber].correctChoice === answer) {
+  const resultElement = document.createElement('div')
+  resultElement.style.display = 'inline'
+
+  if (quizzes[quizIndex].correctChoice === choiceIndex) {
     score++
     scoreDisplay.innerText = `スコア:${score}`
     resultElement.innerText = '○'
