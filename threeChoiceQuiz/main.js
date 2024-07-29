@@ -41,12 +41,11 @@ quizzes.forEach((quiz, quizIndex) => {
   const questionElement = document.createElement('div')
   questionElement.innerText = quiz.question
   questionSection.appendChild(questionElement)
-  main.appendChild(questionSection)
 
   quiz.choices.forEach((choice, choiceIndex) => {
-    const questionElement = document.createElement('button')
-    questionElement.innerText = `${choiceIndex}.${choice}`
-    questionSection.appendChild(questionElement)
+    const answerElement = document.createElement('button')
+    answerElement.innerText = `${choiceIndex}.${choice}`
+    questionSection.appendChild(answerElement)
     questionSection.onclick = () => answer(quizIndex, choiceIndex)
   })
   main.appendChild(questionSection)
