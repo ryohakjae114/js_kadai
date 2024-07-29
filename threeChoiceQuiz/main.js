@@ -36,32 +36,32 @@ main.appendChild(scoreElement)
 const scoreDisplay = document.getElementById('score')
 
 quizzes.forEach((quiz, quizIndex) => {
+  const questionSection = document.createElement('section')
+  questionSection.id = `question${quizIndex}`
   const questionElement = document.createElement('div')
   questionElement.innerText = quiz.question
-  main.appendChild(questionElement)
+  questionSection.appendChild(questionElement)
+  main.appendChild(questionSection)
 
   quiz.choices.forEach((choice, choiceIndex) => {
     const questionElement = document.createElement('div')
     questionElement.innerText = `${choiceIndex}.${choice}`
-    main.appendChild(questionElement)
-
+    questionSection.appendChild(questionElement)
     const choiceButtonElement = document.createElement('button')
     choiceButtonElement.innerText = '選択'
-    choiceButtonElement.setAttribute('quizNumber', quizIndex)
-    choiceButtonElement.setAttribute('choiceNumber', choiceIndex)
     choiceButtonElement.onclick = () => answer(quizIndex, choiceIndex)
-    main.appendChild(choiceButtonElement)
+    questionSection.appendChild(choiceButtonElement)
   })
+  main.appendChild(questionSection)
 })
 
 function answer(questionNumber, answer) {
-  const choices = document.querySelectorAll(`[quizNumber="${questionNumber}"]`)
-  const chosen = document.querySelector(
-    `[quizNumber="${questionNumber}"][choiceNumber="${answer}"]`
-  )
+  const section = document.querySelector(`#question${questionNumber}`)
+  const choiceButtons = section.querySelectorAll('button')
+  const chosen = choiceButtons[answer]
   const resultElement = document.createElement('div')
   resultElement.style.display = 'inline'
-  choices.forEach((choice) => {
+  choiceButtons.forEach((choice) => {
     choice.disabled = true
   })
   if (quizzes[questionNumber].correctChoice === answer) {
