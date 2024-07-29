@@ -44,13 +44,10 @@ quizzes.forEach((quiz, quizIndex) => {
   main.appendChild(questionSection)
 
   quiz.choices.forEach((choice, choiceIndex) => {
-    const questionElement = document.createElement('div')
+    const questionElement = document.createElement('button')
     questionElement.innerText = `${choiceIndex}.${choice}`
     questionSection.appendChild(questionElement)
-    const choiceButtonElement = document.createElement('button')
-    choiceButtonElement.innerText = '選択'
-    choiceButtonElement.onclick = () => answer(quizIndex, choiceIndex)
-    questionSection.appendChild(choiceButtonElement)
+    questionSection.onclick = () => answer(quizIndex, choiceIndex)
   })
   main.appendChild(questionSection)
 })
