@@ -51,10 +51,9 @@ quizzes.forEach((quiz, quizIndex) => {
   main.appendChild(questionSection)
 })
 
-function answer(quizIndex, choiceIndex) {
+const answer = (quizIndex, choiceIndex) => {
   const section = document.querySelector(`#question${quizIndex}`)
   const choiceButtons = section.querySelectorAll('button')
-  const chosen = choiceButtons[choiceIndex]
   choiceButtons.forEach((choice) => {
     choice.disabled = true
   })
@@ -68,5 +67,6 @@ function answer(quizIndex, choiceIndex) {
   } else {
     resultElement.innerText = '✖︎'
   }
+  const chosen = choiceButtons[choiceIndex]
   chosen.after(resultElement)
 }
